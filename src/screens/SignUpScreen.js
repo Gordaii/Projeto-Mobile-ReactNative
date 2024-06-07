@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
-import createUsuariosTable from '../../db/Database';
 
 const db = SQLite.openDatabase('1234.db');
 
