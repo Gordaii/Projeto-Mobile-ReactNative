@@ -28,6 +28,24 @@ export default function ListDetailsScreen({ route, navigation }) {
             if (!listData.valor_total_lista) listData.valor_total_lista = 0;
             if (!listData.valor_total_gasto) listData.valor_total_gasto = 0;
             setListInfo(listData);
+
+            // Consulta para obter o valor total gasto atualizado no banco
+            db.transaction(tx => {
+              tx.executeSql(
+                'SELECT valor_total_gasto FROM listas_compras WHERE id = ?;',
+                [listId],
+                (_, { rows }) => {
+                  if (rows.length > 0) {
+                    const valorTotalGastoNoBanco = rows.item(0).valor_total_gasto;
+                    console.log('Valor total gasto no banco:', valorTotalGastoNoBanco);
+                  } else {
+                    console.log('Nenhuma linha retornada ao recuperar o valor total gasto do banco.');
+                  }
+                },
+                (_, error) => console.error(error)
+              );
+            });
+
           } else {
             createNewList();
           }
@@ -150,6 +168,7 @@ export default function ListDetailsScreen({ route, navigation }) {
             <Text>{item.nome}</Text>
             <Button
               title="Ver Detalhes"
+              onPress={() => navigation.navigate('GroupDetails', { listId: listId, groupId: item.id })}
             />
           </View>
         )}

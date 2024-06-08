@@ -8,6 +8,9 @@ import SignUpScreen from '../screens/SignUpScreen';
 import ShoppingListsScreen from '../screens/ShoppingListsScreen';
 import ListDetailsScreen from '../screens/ListDetailsScreen';
 import EditListDetailsScreen from '../screens/EditListDetailsScreen';
+import GroupDetailsScreen from '../screens/GroupDetailsScreen';
+import EditGroupScreen from '../screens/EditGroupScreen';
+import ItemDetailsScreen from '../screens/ItemDetailsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,6 +24,9 @@ export default function AppNavigator() {
         <Stack.Screen name="Main" component={ShoppingListsScreen} />
         <Tab.Screen name="ListDetails" component={ListDetailsScreen} />
         <Tab.Screen name="EditListDetails" component={EditListDetailsScreen} />
+        <Tab.Screen name="GroupDetails" component={GroupDetailsScreen} />
+        <Tab.Screen name="EditGroup" component={EditGroupScreen} />
+        <Tab.Screen name="ItemDetails" component={ItemDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
